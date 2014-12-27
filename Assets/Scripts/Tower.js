@@ -1,11 +1,11 @@
 ﻿#pragma strict
 
-var hp: int=100;
+var hp_ui: GameObject;
 
-function Start () {
 
-}
 
-function Update () {
+function LostHP(amount: int){
+//GameObject.Find("EnemyTowerHP").SendMessage("UI_LostHP", amount);
+hp_ui.SendMessage("UI_LostHP", amount);
 
 }
