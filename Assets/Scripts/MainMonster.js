@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 var speed: float= 8.0f;
+var atk: int= 1;
 
 
 function Update () {
@@ -10,10 +11,9 @@ function Update () {
 
 function OnCollisionEnter2D (coll : Collision2D) {
    if(coll.collider.tag == "EnemyTower") {
-    coll.collider.GetComponent(EnemyTower).LostHP(1);
+    coll.collider.GetComponent(EnemyTower).LostHP(atk);
     Destroy(gameObject);
    
    }
-
 
 }
