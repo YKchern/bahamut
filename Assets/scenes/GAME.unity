@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
-  amount: 2
+  amount: 3
   prefab: {fileID: 100000, guid: 95956db5511f8c742a779ac6872df5c5, type: 2}
 --- !u!114 &868105376
 MonoBehaviour:
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  amount: 3
+  amount: 5
   prefab: {fileID: 100000, guid: 95956db5511f8c742a779ac6872df5c5, type: 2}
 --- !u!114 &1092223866
 MonoBehaviour:
