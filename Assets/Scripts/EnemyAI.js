@@ -1,29 +1,49 @@
 ﻿#pragma strict
 
-var GenEnemyPoint: GameObject;
-var prefab: GameObject[];
-var waveNo: int=5;
-function Start () {
+var prefab : GameObject [];
 
-  //  for(var i=0;i<5;i++){
-  //     Instantiate(prefab[Random.Range(0,3)],GenEnemyPoint.transform.position, Quaternion.identity); 
-  //     yield WaitForSeconds(.3);
-  // }
-  
-  for(var i=0;i<waveNo;i++){
-   genEnemy(5,0,3,.3);
-   yield WaitForSeconds(3);
-   genEnemy(2,0,3,.5);
-  }
-  
+function Start () {
+   if(PlayerPrefs.GetInt("LV") == 1)
+   {
+	SpawnMon(0, 3, 2, 5.5f);
+	
+	yield WaitForSeconds(2f);
+	
+	InvokeRepeating("RegularSpawn", 0, 10f);
+	
+   }
+   else if(PlayerPrefs.GetInt("LV") == 2)
+   {
+   	SpawnMon(0, 3, 3, 3.5f);
+	
+	yield WaitForSeconds(2f);
+	
+	InvokeRepeating("RegularSpawn", 0, 10f);
+   
+   }
+   else if (PlayerPrefs.GetInt("LV") == 3)
+   {
+    SpawnMon(0, 3, 5, 1.5f);
+	
+	yield WaitForSeconds(2f);
+	
+	InvokeRepeating("RegularSpawn", 0, 10f);
+   
+   
+   }
 }
 
-function genEnemy(eAmt: int, startIdx:int , endIdx:int, wait: float){
+function SpawnMon (start : int, end : int, amount : int, wait : float) {
+	for(var i=0;i<amount;i++) {
+		Instantiate(
+			prefab[Random.Range(start, end)],
+			GameObject.Find ("EnemySpawnPoint").transform.position,
+			Quaternion.identity
+		);
+		yield WaitForSeconds(wait);
+	}
+}
 
-      for(var i=0;i<eAmt;i++){
-       Instantiate(prefab[Random.Range(startIdx,endIdx)],GenEnemyPoint.transform.position, Quaternion.identity); 
-       yield WaitForSeconds(wait);
-   }
-
-
+function RegularSpawn () {
+	SpawnMon (0, 1, 10, 1f);
 }

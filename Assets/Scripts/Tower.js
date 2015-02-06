@@ -1,11 +1,27 @@
 ﻿#pragma strict
 
-var hp_ui: GameObject;
+var oldHP : int;
+var hp : int = 500;
+private var anim : Animator;
 
+function Start () {
+	oldHP = hp;
+	anim = GetComponentInChildren(Animator);
+}
 
+function Update () {
+	if(hp <= 0) {
+		anim.SetTrigger("collapse");
+	}
+	
+	if(oldHP == hp) {
+		anim.SetBool("underattack", false);
+	}
+	else {
+		anim.SetBool("underattack", true);
+	}
+}
 
-function LostHP(amount: int){
-//GameObject.Find("EnemyTowerHP").SendMessage("UI_LostHP", amount);
-hp_ui.SendMessage("UI_LostHP", amount);
-
+function Damage (atk : int) {
+	hp -= atk;
 }
